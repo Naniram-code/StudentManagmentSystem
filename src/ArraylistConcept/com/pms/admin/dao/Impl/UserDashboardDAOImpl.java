@@ -29,18 +29,25 @@ public class UserDashboardDAOImpl extends CustomerDAOImpl {
         System.out.println(" Registration successful");
        }
 
-       public static void AuthenticationUser(String username,String password) {
+       public static boolean AuthenticationUser(String username,String password) {
            int k = 0;
            for (User pro : addUsers) {
-               if ((pro.getUserName().equals(username)) && (pro.getPassword().equals(username))) {
+
+               if ((pro.getUserName().equals(username)) && (pro.getPassword().equals(password))) {
                    System.out.println("user verified ");
-                   } else if
-                    ((pro.getUserName().equals(username)) || (pro.getPassword().equals(username)))
+                   return true;
+
+                   }
+               else if
+                    ((pro.getUserName().equals(username)) || (pro.getPassword().equals(password)))
                     System.out.println("You Enter wrong User name  or password");
                     k++;
+                    return false;
+
                     }
                    if (k == 0)
                            System.out.println("User not found");
+                   return false;
 
               }
               public static void buyProduct(int pidd,int qty)

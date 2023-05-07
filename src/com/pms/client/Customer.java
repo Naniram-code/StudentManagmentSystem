@@ -46,12 +46,16 @@ public class Customer {
                         String uun=sc.next();
                         System.out.print("Enter password=");
                         String uupass=sc.next();
-                        UserDashboardDAOImpl.AuthenticationUser(uun,uupass);
-                        System.out.print("Enter product Id=");
-                        int pidd=sc.nextInt();
-                        System.out.print("Enter Quentity =");
-                        int qttt=sc.nextInt();
-                        UserDashboardDAOImpl.buyProduct(pidd,qttt);
+                        if(UserDashboardDAOImpl.AuthenticationUser(uun,uupass)) {
+                            System.out.print("Enter product Id=");
+                            int pidd=sc.nextInt();
+                            System.out.print("Enter Quantity =");
+                            int qttt=sc.nextInt();
+                            UserDashboardDAOImpl.buyProduct(pidd,qttt);
+                        }
+                       else
+                            System.out.println("Please Register Account to buy");
+
                         break;
 
                     case 4:
@@ -65,12 +69,26 @@ public class Customer {
                     case 6:
                         System.out.print("Enter User ID to update =");
                         int suid=sc.nextInt();
+                        System.out.print("Enter Username=");
+                        String uunn=sc.next();
+                        System.out.print("Enter password=");
+                        String uupasss=sc.next();
+                        if(UserDashboardDAOImpl.AuthenticationUser(uunn,uupasss))
                         customerDetails.updateUser(suid);
+                        else
+                            System.out.println("You can't update");
                         break;
                     case 7:
                         System.out.print("Enter User ID to Delete=");
                         int sdid=sc.nextInt();
+                        System.out.print("Enter Username=");
+                        String uunnn=sc.next();
+                        System.out.print("Enter password=");
+                        String uupassss=sc.next();
+                        if(UserDashboardDAOImpl.AuthenticationUser(uunnn,uupassss))
                         customerDetails.deleteUser(sdid);
+                        else
+                            System.out.println("Sorry You don't have permission ");
                         break;
                     case 8:
                         productClient.main(null);
