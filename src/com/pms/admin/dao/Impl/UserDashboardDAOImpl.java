@@ -6,7 +6,7 @@ import com.pms.model.User;
 
 
 public class UserDashboardDAOImpl extends CustomerDAOImpl {
-
+ static int totalBill_amount=0;
 
     @Override
     public void addCustomer() {
@@ -59,12 +59,14 @@ public class UserDashboardDAOImpl extends CustomerDAOImpl {
                                    System.out.println("Stock is not Enough");
                                     }
                              else {
-                                   int totalCost=bp.getPrice()*qty;
-                                   System.out.println("Total Bill="+totalCost);
-                                   System.out.println("To Pay your bill enter PAY");
+                                   int totalProductCost=bp.getPrice()*qty;
+                                   totalBill_amount+=totalProductCost;
+                                   System.out.println("Total Product Bill="+totalProductCost);
+                                   System.out.println("To buy enter Buy");
                                     sc.next();
-                                   System.out.println("thanks For shopping");
-                                   int stock= bp.getQat()-qty;
+                                    System.out.println("Total Bill="+totalBill_amount);
+                                   System.out.println("purchase successfully");
+                                   int stock= bp.getQat()-qty;//stock
                                    bp.setQat(stock);
                                }
                                 k++;
@@ -73,6 +75,13 @@ public class UserDashboardDAOImpl extends CustomerDAOImpl {
                         System.out.println("Product not found");
 
                     }
+            public static void PayBill()
+            {
+                  System.out.println("\tTotal Bill:" +totalBill_amount);
+                  System.out.println("Enter Pay for payment");
+                  sc.next();
+                  totalBill_amount=0;
+                  System.out.println("*******Thanks for Payment ********");}
 
-    }
+              }
 

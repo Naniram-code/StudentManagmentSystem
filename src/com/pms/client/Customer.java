@@ -20,9 +20,10 @@ public class Customer {
                 System.out.println("                3)Buy Product                          ");
                 System.out.println("                4)Registration                         ");
                 System.out.println("                5)View Customer profile                ");
-                System.out.println("                6)UpdateUser                           ");
-                System.out.println("                7)DeleteUser                           ");
-                System.out.println("                8)Back                                 ");
+                System.out.println("                6)Update Customer                       ");
+                System.out.println("                7)Delete Customer                       ");
+                System.out.println("                8)PayBill                               ");
+                System.out.println("                9)Back                                 ");
                 System.out.println("=======================================================");
                 System.out.print("Enter the choice=");
                 int choice=sc.nextInt();
@@ -91,10 +92,13 @@ public class Customer {
                             System.out.println("Sorry You don't have permission ");
                         break;
                     case 8:
+                        UserDashboardDAOImpl.PayBill();
+                        break;
+                    case 9:
                         productClient.main(null);
                         break;
                     default:
-                        System.out.println("Choose 1 to 6 Between");
+                        System.out.println("Choose 1 to 9 Between");
 
                 }
             }
