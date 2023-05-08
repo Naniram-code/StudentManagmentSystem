@@ -1,6 +1,6 @@
-package ArraylistConcept.com.pms.admin.dao.Impl;
+package com.pms.admin.dao.Impl;
 
-import ArraylistConcept.com.pms.admin.dao.CustomerDAO;
+import com.pms.admin.dao.CustomerDAO;
 
 import com.pms.model.User;
 

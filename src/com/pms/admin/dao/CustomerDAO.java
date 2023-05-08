@@ -1,4 +1,4 @@
-package ArraylistConcept.com.pms.admin.dao;
+package com.pms.admin.dao;
 
 import com.pms.model.User;
 

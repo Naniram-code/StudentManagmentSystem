@@ -1,5 +1,5 @@
-package ArraylistConcept.com.pms.admin.dao.Impl;
-import ArraylistConcept.com.pms.admin.dao.ProductDAO;
+package com.pms.admin.dao.Impl;
+import com.pms.admin.dao.ProductDAO;
 import com.pms.model.Product;
 import java.util.LinkedList;
 import java.util.List;

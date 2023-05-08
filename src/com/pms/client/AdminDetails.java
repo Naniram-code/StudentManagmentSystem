@@ -1,6 +1,6 @@
 package com.pms.client;
-import ArraylistConcept.com.pms.admin.dao.Impl.CustomerDAOImpl;
-import ArraylistConcept.com.pms.admin.dao.Impl.ProductDAOImpl;
+import com.pms.admin.dao.Impl.CustomerDAOImpl;
+import com.pms.admin.dao.Impl.ProductDAOImpl;
 
 import java.util.Scanner;
 

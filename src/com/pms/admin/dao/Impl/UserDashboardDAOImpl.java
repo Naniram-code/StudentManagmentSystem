@@ -1,10 +1,8 @@
-package ArraylistConcept.com.pms.admin.dao.Impl;
+package com.pms.admin.dao.Impl;
+
 
 import com.pms.model.Product;
 import com.pms.model.User;
-
-import java.sql.SQLOutput;
-import java.util.Scanner;
 
 
 public class UserDashboardDAOImpl extends CustomerDAOImpl {
@@ -53,7 +51,7 @@ public class UserDashboardDAOImpl extends CustomerDAOImpl {
               public static void buyProduct(int pidd,int qty)
                 {
                         int k=0;
-                         for ( Product bp :ProductDAOImpl.addProducts)
+                         for ( Product bp : ProductDAOImpl.addProducts)
                         {
                             if (bp.getPid()==pidd){
                                   if((bp.getQat()==0)&&(bp.getQat()<qty))
