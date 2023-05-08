@@ -1,13 +1,10 @@
 package com.pms.admin.dao.Impl;
-
-
 import com.pms.model.Product;
 import com.pms.model.User;
 
-
 public class UserDashboardDAOImpl extends CustomerDAOImpl {
  static int totalBill_amount=0;
-
+// PayBill Added
     @Override
     public void addCustomer() {
         System.out.print("Enter User ID =");
