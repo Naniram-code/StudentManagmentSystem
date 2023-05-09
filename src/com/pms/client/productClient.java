@@ -13,7 +13,8 @@ public class productClient {
                 System.out.println("======================================================  ");
                 System.out.println("                1)Admin                                 ");
                 System.out.println("                2)Customer                              ");
-                System.out.println("                3)Exit                                  ");
+                System.out.println("                3)CustomerClient                        ");
+                System.out.println("                4)Back                                  ");
                 System.out.println("========================================================");
                 System.out.print("Enter the choice=");
 
@@ -29,6 +30,8 @@ public class productClient {
                     case 2:
                         Customer.CustomerDashBoard();
                     case 3:
+                        CustomerClient.CustomerClientmenu();
+                    case 4:
                         System.out.println("*******************Thanks For Using Apps****************");
                         System.exit(0);
 
