@@ -1,11 +1,13 @@
 package com.pms.client;
 
+import com.pms.client.Customer.Customer;
+import com.pms.client.Customer.Registration;
+import com.pms.client.admin.Admin;
+
 import java.util.Scanner;
 
-public class productClient {
-
-
-        public static void main(String[] args) {
+public class PolicyClient {
+    public static void main(String[] args) {
 
 
             Scanner sc=new Scanner(System.in);
@@ -13,8 +15,8 @@ public class productClient {
                 System.out.println("======================================================  ");
                 System.out.println("                1)Admin                                 ");
                 System.out.println("                2)Customer                              ");
-                System.out.println("                3)CustomerClient                        ");
-                System.out.println("                4)Back                                  ");
+                System.out.println("                3)Registration                          ");
+                System.out.println("                4)exit                                  ");
                 System.out.println("========================================================");
                 System.out.print("Enter the choice=");
 
@@ -25,20 +27,24 @@ public class productClient {
                         String mail=sc.next();
                         System.out.print("Enter Admin password=");
                         String psw=sc.next();
-                        AdminDetails.AuthenticationAdmin(mail,psw);
+                        Admin.AuthenticationAdmin(mail,psw);
                         break;
                     case 2:
                         Customer.CustomerDashBoard();
+                        break;
                     case 3:
-                        CustomerClient.CustomerClientmenu();
+                        Registration.CustomerClientmenu();
+                        break;
                     case 4:
                         System.out.println("*******************Thanks For Using Apps****************");
                         System.exit(0);
 
                     default:
-                        System.out.println("Enter 1 to 2 ");
+                        System.out.println("Enter 1 to 4 ");
 
                 }}
         }}
+
+
 
 

@@ -1,16 +1,17 @@
-package com.pms.client;
+package com.pms.client.Customer;
 
-import com.pms.admin.dao.Impl.UserDAOImpl;
+import com.pms.admin.dao.Impl.CustomerDAOImpl;
+import com.pms.admin.dao.PCustomerDAO;
+import com.pms.client.PolicyClient;
 
 import java.util.Scanner;
 
-import static com.pms.client.Customer.customerDetails;
 
-public class CustomerClient {
+public class Registration {
 
         public static void CustomerClientmenu() {
+            PCustomerDAO pCustomerDAO=new CustomerDAOImpl();
 
-            UserDAOImpl userDAO=new UserDAOImpl();
             Scanner sc=new Scanner(System.in);
             while(true) {
                 System.out.println("======================================================  ");
@@ -24,14 +25,14 @@ public class CustomerClient {
                 int choice = sc.nextInt();
                 switch (choice) {
                     case 1:
-                        customerDetails.addCustomer();
+                        pCustomerDAO.addCustomer();
                         break;
                     case 2:
                         System.out.print("Enter UserName=");
                         String us=sc.next();
                         System.out.print("Enter User password=");
                         String psw=sc.next();
-                        if(userDAO.AuthenticationUserandPassword(us,psw)!=false)
+                        if(pCustomerDAO.AuthenticationUserandPassword(us,psw)!=false)
                             System.out.println("user verified ");
                             //System.out.println(userDAO.AuthenticationUserandPassword(us,psw));
                             break;
@@ -39,13 +40,12 @@ public class CustomerClient {
 
                             System.out.println("Enter  UserName for password recovery=");
                             String un=sc.next();
-                            if(userDAO.getPassword(un)!=null)
-
-                                System.out.println("Your Password="+userDAO.getPassword(un));
+                            if(pCustomerDAO.getPassword(un)!=null)
+                                System.out.println("Your Password="+pCustomerDAO.getPassword(un));
                             break;
 
                         case 4:
-                            productClient.main(null);
+                            PolicyClient.main(null);
                             break;
 
                     default:

@@ -1,109 +1,118 @@
 package com.pms.admin.dao.Impl;
 
-import com.pms.admin.dao.CustomerDAO;
 
-import com.pms.model.User;
+import com.pms.admin.dao.PCustomerDAO;
+import com.pms.model.UserList;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerDAOImpl implements CustomerDAO {
-    static Scanner sc =new Scanner(System.in);
-    static List<User> addUsers=new LinkedList<>();
+public class CustomerDAOImpl implements PCustomerDAO {
+    Scanner sc=new Scanner(System.in);
+    static List<UserList> addUser=new LinkedList<>();
+    static List<UserList> policyHolder=new LinkedList<>();
     @Override
     public void addCustomer() {
-        int k  = 1;
-        while (k==1) {
-            System.out.print("Enter User ID =");
-            int uid=sc.nextInt();
-            System.out.print("Enter User Name=");
-            String name=sc.next();
-            System.out.print("Enter User Address=");
-            String add=sc.next();
-            System.out.print("Enter User Phone=");
-            long phone=sc.nextLong();
-            System.out.print("Enter UserName=");
-            String Username=sc.next();
-            System.out.print("Enter Password =");
-            String psw=sc.next();
-            User user=new User(uid,name,add,phone,Username,psw);
-            addUsers.add(user);
-            System.out.println("Customer add successfully");
-            System.out.println("Do you want add more Customer Y for 1/ N for 2=");
-            k =sc.nextInt();
-
-        }}
+        System.out.print("Enter User ID =");
+        int uid = sc.nextInt();
+        System.out.print("Enter User Name=");
+        String uname = sc.next();
+        System.out.print("Enter User Address=");
+        String add = sc.next();
+        System.out.print("Enter User Phone=");
+        long phone = sc.nextLong();
+        System.out.print("Enter email=");
+        String email = sc.next();
+        System.out.print("Enter Password =");
+        String psw = sc.next();
+        UserList user = new UserList(uid, uname, add, phone,email, psw);
+        addUser.add(user);//add user data to addUser linked-list
+        System.out.println(" Registration successful");
+    }
 
 
     @Override
-    public List<User> viewAllUserInfo() {
-        return addUsers;
+    public List<UserList> viewAllUserInfo() {
+        return addUser;
     }
 
     @Override
-    public User viewUserInfo(int id) {
-        for (User pro :addUsers)
-        {
-            if (pro.getuId()==id)
-                return pro;
-        }
+    public UserList viewUserInfo(int id) {
         return null;
     }
 
-
     @Override
     public void deleteUser(int id) {
-        int k=0;
-        for (User pro :addUsers)
-        {
-            if (pro.getuId()==id)
-                addUsers.remove(pro);
-            System.out.println("Customer Deleted successfully");
-
-            k++;
-            break;
-        }
-        if(k==0)
-            System.out.println(" Given ID is not exit");
 
     }
 
     @Override
     public void updateUser(int id) {
-        int k=0;
-        for(User pro :addUsers)
-        {
-            if(pro.getuId()==id){
-                System.out.println("Do you want modify 1)Name 2)Address 3) Phone");
-                int choice=sc.nextInt();
-                switch (choice) {
-                    case 1:
-                        System.out.print("Enter User name=");
-                        String pname = sc.next();
-                        pro.setUname(pname);
-                        System.out.println("User name is Update");
-                        break;
-                    case 2:
-                        System.out.print("Enter Address=");
-                        String add = sc.next();
-                        pro.setuAddress(add);
-                        System.out.println("User Address Update");
-                        break;
-                    case 3:
-                        System.out.print("Enter User Phone=");
-                        long ph = sc.nextLong();
-                        pro.setuPhone(ph);
-                        System.out.println("Phone Number Update");
-                        break;
-                    default:
-                        System.out.println(" please Choose 1 to 3");
-                  }
-                        ++k;
-                }}
-        if(k==0)
-        { System.out.println(" Given record not exit");}
-    }
 
     }
 
+    @Override
+    public boolean AuthenticationUserandPassword(String username, String password) {
+        int k = 0;
+        for (UserList pro : addUser) {
+
+            if ((pro.getemail().equals(username)) && (pro.getpassword().equals(password))) {
+                k++;
+                return true;
+            }
+            else if
+            ((pro.getemail().equals(username)) || (pro.getemail().equals(password)))
+                System.out.println("You Enter wrong User name  or password");
+            k++;
+            return false;
+
+        }
+        if (k == 0)
+            System.out.println("User not found");
+        return false;
+
+
+    }
+
+    @Override
+    public String getPassword(String email) {
+        int k = 0;
+        for (UserList pro : addUser) {
+            if ((pro.getemail().equals(email))) {
+                String getpsw = pro.getpassword();
+                k++;
+                return getpsw;
+            }
+
+        }
+        if (k == 0)
+            System.out.println("User not Exit");
+
+        return null;
+
+    }
+
+    @Override
+    public List<UserList> policyHolder(String email,int policyID) {
+        int k = 0;
+        for (UserList pro : addUser) {
+            if (pro.getemail().equals(email)) {
+                UserList ActiveUser = new UserList(pro.getid(),policyID,pro.getUname(),pro.getaddress(),
+                        pro.getphone(),pro.getemail(), "Active");
+                          policyHolder.add(ActiveUser);
+                k++;  //this block code create active user list
+                return policyHolder;
+            }
+
+        }
+        if (k == 0)
+            System.out.println("User not Exit");
+        return null;
+    }
+    public void policyHolderDisplay(){
+
+        System.out.println(policyHolder);
+    }
+
+}
