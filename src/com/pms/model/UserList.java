@@ -1,7 +1,20 @@
 package com.pms.model;
 
 public class UserList {
-    private int id;
+    public UserList() {
+    }
+    public static String Aemail="admin";
+    public static String Apassword="admin";
+    private int uid;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
     private String uname;
     private String address;
     private long phone;
@@ -9,33 +22,17 @@ public class UserList {
     private String password;
     public static String status;
 
-    public static int getPolicyID() {
+    public int getPolicyID() {
         return policyID;
     }
 
-    public static void setPolicyID(int policyID) {
-        UserList.policyID = policyID;
+    public void setPolicyID(int policyID) {
+        this.policyID = policyID;
     }
 
-    public static int policyID;
-  
-
-    public String getstatus() {
-        return status;
-    }
-
-    public void setstatus(String status) {
-        this.status = status;
-    }
+    public  int policyID;
 
 
-    public int getid() {
-        return id;
-    }
-
-    public void setid(int id) {
-        this.id = id;
-    }
 
     public String getUname() {
         return uname;
@@ -45,41 +42,50 @@ public class UserList {
         this.uname = uname;
     }
 
-    public String getaddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setaddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public long getphone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setphone(long phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
-    public String getemail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setemail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setpassword(String password) {
-        password = password;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public static String getStatus() {
+        return status;
+    }
+
+    public static void setStatus(String status) {
+        UserList.status = status;
     }
 
 
-    public UserList(int id, String uname, String address, long phone, String email, String password) {
-        this.id = id;
+
+    public UserList(int uid, String uname, String address, long phone, String email, String password) {
+        this.uid = uid;
         this.uname = uname;
         this.address = address;
         this.phone = phone;
@@ -88,30 +94,19 @@ public class UserList {
     }
 
 
-    @Override
-    public String toString() {
-        return "statusUserList{" +
-                "id=" + id +
-                ", PolicyId='" + policyID + '\'' +
-                ", uname='" + uname + '\'' +
-                ", address='" + address + '\'' +
-                ", phone=" + phone +
-                ", email='" + email + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
-
     public UserList(int id,int policyID, String uname, String address, long phone,String email,
                     String status) {
-        this.id = id;
+        this.uid = uid;
         this.policyID = policyID;
         this.uname = uname;
         this.address = address;
         this.phone = phone;
         this.email = email;
-
         this.status = status;
+
     }
+
+
 }
 
 

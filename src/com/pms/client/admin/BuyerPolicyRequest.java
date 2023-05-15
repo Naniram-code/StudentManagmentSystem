@@ -1,60 +1,62 @@
 package com.pms.client.admin;
-import com.pms.client.PolicyClient;
+
+import com.pms.admin.dao.Impl.UserDAOImpl;
 
 import java.util.Scanner;
 
 public class BuyerPolicyRequest {
+    static UserDAOImpl userDAO = new UserDAOImpl();
 
-    public static void ProductDetails(){
-            Scanner sc=new Scanner(System.in);
-            while(true)
-            {
-                System.out.println("======================================================  ");
-                System.out.println("                1)View                                  ");
-                System.out.println("                2)Activate                               ");
-                System.out.println("                4)Cancle                                 ");
-                System.out.println("                5)Back                                  ");
-                System.out.println("======================================================== ");
-                System.out.print("Enter the choice=");
-                int choice=sc.nextInt();
-                switch(choice)
-                {
+    public static void CustomerStatus() {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("======================================================  ");
+            System.out.println("                1)View                                  ");
+            System.out.println("                2)Activate                               ");
+            System.out.println("                3)Cancel                                 ");
+            System.out.println("                4)Back                                  ");
+            System.out.println("======================================================== ");
+            System.out.print("Enter the choice=");
+            int choice = sc.nextInt();
+            switch (choice) {
 
-                    case 6:
-                        //customerDAO.addCustomer();
-                        break;
-                    case 7:
-                        //System.out.println(customerDAO.viewAllUserInfo());
-                        System.out.println("");
-                        break;
+                case 1:
+                    //userDAO.policyActiveUserList();
+                    userDAO.PolicyRequestList();
+                    //userDAO.policyCancelUserList();
 
-                    case 8:
-                        System.out.print("Enter ID to View User =");
-                        int sid=sc.nextInt();
-                        //System.out.println(customerDAO.viewUserInfo(sid));
-                        break;
-                    case 9:
-                        System.out.print("Enter User ID to update =");
-                        int suid=sc.nextInt();
-                        //customerDAO.updateUser(suid);
 
-                        break;
-                    case 10:
-                        System.out.print("Enter User ID to Delete=");
-                        int sdid=sc.nextInt();
-                        //customerDAO.deleteUser(sdid);
-                        break;
-                    case 11:
-                        PolicyClient.main(null);
-                        break;
-                    default:
-                        System.out.println("Choose 1 to 11 Between");
 
-                }
+                    break;
+                case 2:
+                    System.out.print("Enter User email ");
+                    String email = sc.next();
+                    System.out.print("Enter policy Id= ");
+                    int id = sc.nextInt();
+                    userDAO.policyActivate(email, id);
+                    System.out.println("User Activate Successfully");
+                    break;
+
+                case 3:
+                    System.out.println("Enter User email ");
+                    String cmail = sc.next();
+                    System.out.println("Enter policy Id= ");
+                    int cid = sc.nextInt();
+                    userDAO.PolicyCancel(cmail, cid);
+                    System.out.println("User Cancel successfully");
+                    break;
+
+                case 4:
+                    Admin.PolicyDetails();
+                    break;
+                default:
+                    System.out.println("Choose 1 to 5 Between");
+
             }
         }
-
     }
+
+}
 
 
 

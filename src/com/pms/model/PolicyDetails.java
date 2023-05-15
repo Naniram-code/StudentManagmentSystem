@@ -2,7 +2,13 @@ package com.pms.model;
 
 public class PolicyDetails {
     private int categoryid;
-
+    private int Subcategoryid;
+    private String categoryname;
+    private String subCategoryname;
+    private String description;
+    private String policyName;
+    private int sumAssured;
+    private int premium;
     public int getPolicyid() {
         return policyid;
     }
@@ -20,13 +26,7 @@ public class PolicyDetails {
         Subcategoryid = subcatagoryid;
     }
 
-    private int Subcategoryid;
-    private String categoryname;
-    private String subCategoryname;
-    private String description;
-    private String policyName;
-    private int sumAssured;
-    private int premium;
+
 
     public int getCatagoryid() {
         return categoryid;
@@ -121,14 +121,14 @@ public class PolicyDetails {
                     ", description='" + description + '\'' +
                     '}';
         } else if (this.Subcategoryid != 0) {
-            return "PolicyDetails{" +
+            return "SubCategoryDetails{" +
                     "Subcategoryid=" + Subcategoryid +
                     ", categoryname='" + categoryname + '\'' +
                     ", subCategoryname='" + subCategoryname + '\'' +
                     ", description='" + description + '\'' +
                     '}';
         } else if (this.categoryid != 0) {
-            return "PolicyDetails{" +
+            return "CategoryDetails{" +
                     "categoryid=" + categoryid +
                     ", categoryname='" + categoryname + '\'' +
                     ", description='" + description + '\'' +
