@@ -23,7 +23,7 @@ public class UserDashBoard {
             System.out.println("                3)view Policy                       ");
             System.out.println("                4)Request Policy                     ");
             System.out.println("                5)Policy Hold                       ");
-            System.out.println("                6)Back                              ");
+            System.out.println("                6)BackHomePage                             ");
             System.out.println("=====================================================");
             System.out.print("Enter the choice=");
             int choice = sc.nextInt();

@@ -18,7 +18,7 @@ public class Policy {
             System.out.println("                2)ViewPolicy                           ");
             System.out.println("                3)UpdatePolicy                         ");
             System.out.println("                4)Delete                               ");
-            System.out.println("                5)Back                                ");
+            System.out.println("                5)BackAdminPage                               ");
             System.out.println("=======================================================");
             System.out.print("Enter the choice=");
             int choice = sc.nextInt();
@@ -52,7 +52,7 @@ public class Policy {
                     policyDAOp.deletePolicy(did);
                     break;
                 case 5:
-                    Admin.PolicyDetails();
+                    Admin.adminPage();
                     break;
                 default:
                     System.out.println("Choose 1 to 5 Between");

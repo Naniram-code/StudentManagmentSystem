@@ -14,7 +14,7 @@ public class BuyerPolicyRequest {
             System.out.println("                1)View                                  ");
             System.out.println("                2)Activate                               ");
             System.out.println("                3)Cancel                                 ");
-            System.out.println("                4)Back                                  ");
+            System.out.println("                4)BackAdminPage                                 ");
             System.out.println("======================================================== ");
             System.out.print("Enter the choice=");
             int choice = sc.nextInt();
@@ -47,7 +47,7 @@ public class BuyerPolicyRequest {
                     break;
 
                 case 4:
-                    Admin.PolicyDetails();
+                    Admin.adminPage();
                     break;
                 default:
                     System.out.println("Choose 1 to 5 Between");

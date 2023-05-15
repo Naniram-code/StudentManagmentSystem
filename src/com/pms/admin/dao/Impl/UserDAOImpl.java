@@ -10,12 +10,14 @@ import java.util.Scanner;
 public class UserDAOImpl implements UserDAO {
     Scanner sc = new Scanner(System.in);
      static List<UserList> addUser = new LinkedList<>();
-      List<UserList> activeUserList = new LinkedList<>();
-      List<UserList> policyRequestList = new LinkedList<>();
-      List<UserList> cancelUser = new LinkedList<>();
+      static List<UserList> activeUserList = new LinkedList<>();
+     static  List<UserList> policyRequestList = new LinkedList<>();
+     static List<UserList> cancelUser = new LinkedList<>();
 
     @Override
     public void addCustomer() {
+        int k=1;
+        while(k==1){
         System.out.print("Enter User ID =");
         int uid = sc.nextInt();
         System.out.print("Enter User Name=");
@@ -31,6 +33,8 @@ public class UserDAOImpl implements UserDAO {
         UserList user = new UserList(uid, uname, add, phone, email, psw);
         addUser.add(user);//add user data to addUser linked-list
         System.out.println(" Registration successful");
+            System.out.println("Do you want register more member 1 for Yes / 2 for No=");
+            k=sc.nextInt();}
     }
 
 
@@ -47,7 +51,6 @@ public class UserDAOImpl implements UserDAO {
         for (UserList pro : addUser) {
 
             if ((pro.getEmail().equals(email)) && (pro.getPassword().equals(password))) {
-                System.out.println("User Verified");
                 k++;
                 return true;
             } else if

@@ -32,21 +32,21 @@ public class HomePage {
                     System.out.println("Are you Admin user type Yes or No?=");
                     String userOpt = sc.next();
                     if (userOpt.equalsIgnoreCase("yes")) {
-                        System.out.println("Enter AdminUser ");
+                        System.out.print("Enter AdminUser ");
                         String adminUser = sc.next();
-                        System.out.println("Enter AdminPassword ");
+                        System.out.print("Enter AdminPassword ");
                         String password = sc.next();
                         if (userDAO.AuthonticationAdmin(adminUser, password) != false)
-                            System.out.println("Insurance Mangement System Admin User :"+adminUser);
-                            Admin.PolicyDetails();
+                            System.out.println("Insurance Management System Admin User :" + adminUser);
+                        Admin.adminPage();
                     } else {
-                        System.out.println("Enter UserEmail ");
+                        System.out.print("Enter UserEmail ");
                         String useremail = sc.next();
-                        System.out.println("Enter  User Password ");
+                        System.out.print("Enter  User Password ");
                         String password = sc.next();
                         if (userDAO.AuthenticationEmailandPassword(useremail, password) != false)
-                            System.out.println("Insurance Management System Login User :"+useremail);
-                            UserDashBoard.UserDashBoardmenu();
+                            System.out.println("Insurance Management System  User Login :" + useremail);
+                        UserDashBoard.UserDashBoardmenu();
                     }
                     break;
 

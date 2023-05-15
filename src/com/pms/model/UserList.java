@@ -6,7 +6,12 @@ public class UserList {
     public static String Aemail="admin";
     public static String Apassword="admin";
     private int uid;
-
+    private String uname;
+    private String address;
+    private long phone;
+    private String email;
+    private String password;
+    public static String status;
     public int getUid() {
         return uid;
     }
@@ -14,13 +19,6 @@ public class UserList {
     public void setUid(int uid) {
         this.uid = uid;
     }
-
-    private String uname;
-    private String address;
-    private long phone;
-    private String email;
-    private String password;
-    public static String status;
 
     public int getPolicyID() {
         return policyID;

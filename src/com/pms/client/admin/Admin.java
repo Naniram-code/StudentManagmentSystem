@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Admin {
     static UserDAOImpl userDAO = new UserDAOImpl();
 
-    public static void PolicyDetails() {
+    public static void adminPage() {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("======================================================  ");
@@ -18,14 +18,14 @@ public class Admin {
             System.out.println("                3)SubCategory                           ");
             System.out.println("                4)Policy                                ");
             System.out.println("                5)Buyer's Policy Request                        ");
-            System.out.println("                6)Back                                  ");
+            System.out.println("                6)BackHomePage                                 ");
             System.out.println("========================================================");
             System.out.print("Enter the choice=");
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
 
-                    for (UserList user : userDAO.viewAllUserInfo()) {
+                    for (UserList user :userDAO.viewAllUserInfo()) {
                         System.out.println("User ID: " + user.getUid());
                         System.out.println("User Name: " + user.getUname());
                         System.out.println("User Address: " + user.getAddress());

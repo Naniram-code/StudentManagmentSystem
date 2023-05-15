@@ -19,7 +19,7 @@ public class Registration {
             System.out.println("                1)Register                              ");
             System.out.println("                2)VerificationEmailAndPassword       ");
             System.out.println("                3)forgotPassword                                  ");
-            System.out.println("                4)Exit                                  ");
+            System.out.println("                4)BackHomePage                                  ");
             System.out.println("========================================================");
             System.out.print("Enter the choice=");
 
@@ -33,7 +33,8 @@ public class Registration {
                     String email = sc.next();
                     System.out.print("Enter User password=");
                     String psw = sc.next();
-                    userDAO.AuthenticationEmailandPassword(email, psw);
+                    if(userDAO.AuthenticationEmailandPassword(email, psw)!=false);
+                    System.out.println(" User verified");
                     break;
                 case 3:
 

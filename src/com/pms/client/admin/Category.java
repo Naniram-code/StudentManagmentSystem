@@ -21,7 +21,7 @@ public class Category {
             System.out.println("                2)ViewCategory                           ");
             System.out.println("                3)UpdateCategory                         ");
             System.out.println("                4)Delete                                 ");
-            System.out.println("                5)Back                                  ");
+            System.out.println("                5)BackAdminPage                                  ");
             System.out.println("======================================================== ");
             System.out.print("Enter the choice=");
             int choice = sc.nextInt();
@@ -50,7 +50,7 @@ public class Category {
                     categoryDAO.deleteCategory(did);
                     break;
                 case 5:
-                    Admin.PolicyDetails();
+                    Admin.adminPage();
                     break;
                 default:
                     System.out.println("Choose 1 to 11 Between");
