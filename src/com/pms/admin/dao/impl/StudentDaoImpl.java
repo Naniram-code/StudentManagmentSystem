@@ -19,7 +19,7 @@ public class StudentDaoImpl implements StudentDAO {
     int row = 0;
 
     @Override
-    public int addStudent(Student student) {
+    public int addStudent(Student student) throws SQLException {
         //int row = 0;
         try {
             connection = ConnectionManager.getConnection();//1
@@ -34,11 +34,13 @@ public class StudentDaoImpl implements StudentDAO {
             else
                 System.out.println("Student Fail to Add ");
 
-            ConnectionManager.closeconnection(connection, preparedStatement);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        finally {
+            ConnectionManager.closeconnection(connection, preparedStatement);
+        }
         return row;
     }
 
@@ -61,6 +63,10 @@ public class StudentDaoImpl implements StudentDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        finally {
+            ConnectionManager.closeconnection(resultSet, preparedStatement, connection);
+        }
+
         return studentList;
     }
 

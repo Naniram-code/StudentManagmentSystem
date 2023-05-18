@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface StudentDAO {
-    public int addStudent(Student sb);
+    public int addStudent(Student sb) throws SQLException;
 
     public List<Student> viewAllUserInfo() throws SQLException;
     Student viewStudent(int sno) throws SQLException;
