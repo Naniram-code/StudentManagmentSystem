@@ -1,10 +1,13 @@
 package com.pms.client;
 
+import com.pms.admin.dao.impl.ExceptionSMS;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class StudentClient{
-public static void main(String[]args)throws SQLException{
+public static void main(String[]args) throws SQLException,
+        ExceptionSMS {
         Scanner sc=new Scanner(System.in);
         while(true){
         System.out.println("======================================================");

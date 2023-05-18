@@ -1,4 +1,5 @@
 package com.pms.client;
+import com.pms.admin.dao.impl.ExceptionSMS;
 import com.pms.admin.dao.impl.StudentDaoImpl;
 import com.pms.model.Student;
 import java.sql.SQLException;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 public class StudentDetails {
 
     static StudentDaoImpl studentDao=new StudentDaoImpl();
-        public static void StudentDetailMenu() throws SQLException {
+        public static void StudentDetailMenu() throws SQLException, ExceptionSMS {
             Scanner sc = new Scanner(System.in);
             while (true) {
                 System.out.println("=====================================================");

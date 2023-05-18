@@ -13,14 +13,13 @@ public class StudentDaoImpl implements StudentDAO {
     static Statement statement = null;
     static ResultSet resultSet = null;
     static PreparedStatement preparedStatement = null;
-
     Scanner sc = new Scanner(System.in);
     static List<Student> studentList = new LinkedList<>();
     int row = 0;
 
     @Override
     public int addStudent(Student student) throws SQLException {
-        //int row = 0;
+
         try {
             connection = ConnectionManager.getConnection();//1
             final String sql = "INSERT INTO Student (sno,sname,saddress) VALUES (?,?,?)";
@@ -29,18 +28,18 @@ public class StudentDaoImpl implements StudentDAO {
             preparedStatement.setString(2, student.getSname());
             preparedStatement.setString(3, student.getSaddress());
             row = preparedStatement.executeUpdate();//3
-            if (row > 0)
-                System.out.println("Student Added Successfully");
-            else
-                System.out.println("Student Fail to Add ");
 
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
+            if (row > 0) {
+                throw new ExceptionSMS("Student Added Successfully");
+            } else {
+                throw new ExceptionSMS("Student Failed to Add");
+            }
+        } catch (ExceptionSMS e) {
+            System.out.println(e.getMessage());
+        } finally {
             ConnectionManager.closeconnection(connection, preparedStatement);
         }
+
         return row;
     }
 
@@ -58,12 +57,17 @@ public class StudentDaoImpl implements StudentDAO {
                 String sadds = resultSet.getString(3);
                 Student stu = new Student(sno, sname, sadds);
                 studentList.add(stu);
+                row++;
             }
-            ConnectionManager.closeconnection(resultSet, preparedStatement, connection);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
+            if (row != 0) {
+                throw new ExceptionSMS("View All Student Successfully");
+            } else {
+                throw new ExceptionSMS("Student  are not exit");
+            }
+        } catch (ExceptionSMS e) {
+            System.out.println(e.getMessage());
+
+        } finally {
             ConnectionManager.closeconnection(resultSet, preparedStatement, connection);
         }
 
@@ -86,14 +90,13 @@ public class StudentDaoImpl implements StudentDAO {
                 String sadds = resultSet.getString(3);
                 System.out.println("ID: " + sno + ", Name: " + sname + ", Address: " +
                         sadds);
-                System.out.println("Student find Successfully");}
-            else
-                System.out.println("Student not EXIT ");
-            ConnectionManager.closeconnection(resultSet, preparedStatement, connection);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
+                throw new ExceptionSMS("Student View Successfully");
+            } else {
+                throw new ExceptionSMS("Student not exit");
+            }
+        } catch (ExceptionSMS e) {
+            System.out.println(e.getMessage());
+        } finally {
             ConnectionManager.closeconnection(resultSet, preparedStatement, connection);
         }
 
@@ -105,23 +108,34 @@ public class StudentDaoImpl implements StudentDAO {
     public int updateStudent(int sn) throws SQLException {
 
         try {
-            connection = ConnectionManager.getConnection();
-            final String updateQuery = "UPDATE Student SET sname = ? WHERE sno =?";
-            preparedStatement = connection.prepareStatement(updateQuery);
-            System.out.println("Enter New name for update=");
-            String sna = sc.next();
+            connection = ConnectionManager.getConnection();//1
+            final String updateQuerysname = "UPDATE Student SET sname = ? WHERE sno =?";
+            final String updateQuerysaddress = "UPDATE Student SET   saddress = ? WHERE sno =?";
+            System.out.println("Enter 1 for  for update sname 2 for address=");
+            int ch = sc.nextInt();
+            if (ch == 1) {
+                preparedStatement = connection.prepareStatement(updateQuerysname);//2
+                System.out.println("Enter New Student name for update=");
+                String sna = sc.next();
+                preparedStatement.setString(1, sna);
+                preparedStatement.setInt(2, sn);
+            } else {
+                preparedStatement = connection.prepareStatement(updateQuerysaddress);//2
+                System.out.println("Enter New Student Address for update=");
+                String address = sc.next();
+                preparedStatement.setString(1, address);
+                preparedStatement.setInt(2, sn);
+            }
 
-            preparedStatement.setString(1, sna);
-            preparedStatement.setInt(2, sn);
-            row = preparedStatement.executeUpdate();//row update count
-            if (row > 0)
-                System.out.println("Student update Successfully");
-            else
-                System.out.println("Student Fail to Add ");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+            row = preparedStatement.executeUpdate();//row update count//3
+            if (row > 0) {
+                throw new ExceptionSMS("Student info update Successfully");
+            } else {
+                throw new ExceptionSMS("Student info Failed to update");
+            }
+        } catch (ExceptionSMS e) {
+            System.out.println(e.getMessage());
+        } finally {
             ConnectionManager.closeconnection(connection, preparedStatement);
         }
 
@@ -131,25 +145,24 @@ public class StudentDaoImpl implements StudentDAO {
 
     @Override
     public int deleteStudent(int sno) throws SQLException {
-
         try {
-            connection = ConnectionManager.getConnection();
+            connection = ConnectionManager.getConnection();//1
             final String deleteQuery = "DELETE FROM Student WHERE sno=?";
-            preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement = connection.prepareStatement(deleteQuery);//2
             preparedStatement.setInt(1, sno);
-            row = preparedStatement.executeUpdate();
-            if (row > 0)
-                System.out.println("Student Delete Successfully");
-            else
-                System.out.println("Student Fail to Delete ");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-         finally {
+            row = preparedStatement.executeUpdate();//3
+            if (row > 0) {
+                throw new ExceptionSMS("Student Delete Successfully");
+            } else {
+                throw new ExceptionSMS("Student Failed to Delete");
+            }
+        } catch (ExceptionSMS e) {
+            System.out.println(e.getMessage());
+        } finally {
             ConnectionManager.closeconnection(connection, preparedStatement);
         }
         return 0;
     }
 
 }
+
