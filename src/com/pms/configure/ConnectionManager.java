@@ -1,33 +1,31 @@
 package com.pms.configure;
 
+import com.pms.exception.ExceptionSMS;
 import com.pms.utility.Properties_Reader;
 
 import java.sql.*;
 
 public class ConnectionManager {
-       private static Connection connection=null;
-    public static Connection getConnection() throws SQLException {
+    static Connection connection = null;
 
+
+    public static Connection getConnection() throws ExceptionSMS {
         try {
-            connection = DriverManager.getConnection(
+            return DriverManager.getConnection(
                     Properties_Reader.readKey("url"),
                     Properties_Reader.readKey("username"),
                     Properties_Reader.readKey("password"));
-
-            return connection;
-
-        } finally {
-
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }
 
-    public static void closeconnection(Connection con, PreparedStatement ps) throws SQLException {
+    public static void closeconnection(Connection con, PreparedStatement ps) throws ExceptionSMS {
         if (ps != null) {
             try {
                 ps.close();
             } catch (SQLException e) {
-
                 throw new RuntimeException(e);
             }
         }
@@ -40,7 +38,7 @@ public class ConnectionManager {
         }
     }
 
-    public static void closeconnection(ResultSet rs, PreparedStatement ps, Connection con) throws SQLException {
+    public static void closeconnection(ResultSet rs, PreparedStatement ps, Connection con) throws ExceptionSMS {
         if (rs != null) {
             try {
                 rs.close();

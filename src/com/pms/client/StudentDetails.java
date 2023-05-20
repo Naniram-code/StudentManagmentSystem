@@ -25,8 +25,7 @@ public class StudentDetails {
 
 
                     case 1:
-                        //System.out.println("Enter Student ID=");
-                        //int id=sc.nextInt();
+
                         System.out.println("Enter Student Name=");
                         String sname=sc.next();
                         System.out.println("Enter Student Address=");

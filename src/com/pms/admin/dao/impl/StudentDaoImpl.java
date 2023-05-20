@@ -1,6 +1,7 @@
 package com.pms.admin.dao.impl;
 
 import com.pms.admin.dao.StudentDAO;
+
 import com.pms.configure.ConnectionManager;
 import com.pms.exception.ExceptionSMS;
 import com.pms.model.Student;
@@ -24,10 +25,9 @@ public class StudentDaoImpl implements StudentDAO {
     public String addStudent(Student student) throws SQLException {
              String sms="";
         try {
-            ConnectionManager.getConnection();//Connection
-            preparedStatement = connection.prepareStatement(STUDENT_INSERT_QUERY);//Statement
-            //preparedStatement.setInt(1, student.getSno());
-            preparedStatement.setString(1, student.getSname());
+            connection= ConnectionManager.getConnection();//Connection
+            preparedStatement =connection.prepareStatement(STUDENT_INSERT_QUERY);//Statement
+            preparedStatement.setString(1, student.getSname());//set value
             preparedStatement.setString(2, student.getSaddress());
             row = preparedStatement.executeUpdate();//Execute
 
@@ -49,7 +49,7 @@ public class StudentDaoImpl implements StudentDAO {
     @Override
     public List<Student> viewAllUserInfo() throws SQLException {
         try {
-            ConnectionManager.getConnection();//1
+            connection=ConnectionManager.getConnection();//1
             preparedStatement = connection.prepareStatement(STUDENT_SELECT_QUERY);//2
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
@@ -79,7 +79,7 @@ public class StudentDaoImpl implements StudentDAO {
     public Student viewStudent(int no) throws SQLException {
         String student = null;
         try {
-            ConnectionManager.getConnection();//1
+            connection=ConnectionManager.getConnection();//1
             preparedStatement = connection.prepareStatement(STUDENT_SELECT_QUERY_with_sno);//2
             preparedStatement.setInt(1, no);//set value to sno
             resultSet = preparedStatement.executeQuery();//3
@@ -104,7 +104,7 @@ public class StudentDaoImpl implements StudentDAO {
     public int updateStudent(int sn) throws SQLException {
 
         try {
-            ConnectionManager.getConnection();//1
+            connection=ConnectionManager.getConnection();//1
             System.out.println("Enter 1 for  for update name 2 for address=");
             int ch = sc.nextInt();
             if (ch == 1) {
@@ -138,7 +138,7 @@ public class StudentDaoImpl implements StudentDAO {
     @Override
     public int deleteStudent(int sno) throws SQLException {
         try {
-            ConnectionManager.getConnection();//1
+            connection=ConnectionManager.getConnection();//1
             final String deleteQuery = "DELETE FROM Student WHERE sno=?";
             preparedStatement = connection.prepareStatement(deleteQuery);//2
             preparedStatement.setInt(1, sno);
