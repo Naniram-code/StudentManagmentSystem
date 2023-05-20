@@ -1,5 +1,5 @@
 package com.pms.client;
-import com.pms.admin.dao.impl.ExceptionSMS;
+import com.pms.exception.ExceptionSMS;
 import com.pms.admin.dao.impl.StudentDaoImpl;
 import com.pms.model.Student;
 import java.sql.SQLException;
@@ -25,19 +25,19 @@ public class StudentDetails {
 
 
                     case 1:
-                        System.out.println("Enter Student ID=");
-                        int id=sc.nextInt();
+                        //System.out.println("Enter Student ID=");
+                        //int id=sc.nextInt();
                         System.out.println("Enter Student Name=");
                         String sname=sc.next();
                         System.out.println("Enter Student Address=");
                         String sadd=sc.next();
-                        Student stu=new Student(id,sname,sadd);
+                        Student stu=new Student(sname,sadd);
                         studentDao.addStudent(stu);
                         break;
                     case 2:
 
                         for (Student pro : studentDao.viewAllUserInfo()){
-                            System.out.println("ID: " + pro.getSno() + ", Name: " + pro.getSname() + ", Address: " +
+                            System.out.println("sno: " + pro.getSno() + ", Name: " + pro.getSname() + ", Address: " +
                                     pro.getSaddress());
 
                         }

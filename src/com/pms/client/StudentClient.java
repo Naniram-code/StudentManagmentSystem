@@ -1,6 +1,6 @@
 package com.pms.client;
 
-import com.pms.admin.dao.impl.ExceptionSMS;
+import com.pms.exception.ExceptionSMS;
 
 import java.sql.SQLException;
 import java.util.Scanner;

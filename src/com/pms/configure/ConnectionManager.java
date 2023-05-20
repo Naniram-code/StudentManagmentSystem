@@ -1,28 +1,33 @@
-package com.pms.admin.dao.impl;
+package com.pms.configure;
 
 import com.pms.utility.Properties_Reader;
 
 import java.sql.*;
 
 public class ConnectionManager {
+       private static Connection connection=null;
+    public static Connection getConnection() throws SQLException {
 
-    public static Connection getConnection() throws ExceptionSMS {
         try {
-            return DriverManager.getConnection(
-                   Properties_Reader.readKey("url"),
-                   Properties_Reader.readKey("username"),
-                   Properties_Reader.readKey("password"));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            connection = DriverManager.getConnection(
+                    Properties_Reader.readKey("url"),
+                    Properties_Reader.readKey("username"),
+                    Properties_Reader.readKey("password"));
+
+            return connection;
+
+        } finally {
+
         }
 
     }
 
-    public static void closeconnection(Connection con, PreparedStatement ps) throws ExceptionSMS {
+    public static void closeconnection(Connection con, PreparedStatement ps) throws SQLException {
         if (ps != null) {
             try {
                 ps.close();
             } catch (SQLException e) {
+
                 throw new RuntimeException(e);
             }
         }
@@ -35,7 +40,7 @@ public class ConnectionManager {
         }
     }
 
-    public static void closeconnection(ResultSet rs, PreparedStatement ps, Connection con) throws ExceptionSMS {
+    public static void closeconnection(ResultSet rs, PreparedStatement ps, Connection con) throws SQLException {
         if (rs != null) {
             try {
                 rs.close();
